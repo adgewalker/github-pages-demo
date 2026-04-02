@@ -1,0 +1,76 @@
+---
+interface Props {
+  about: {
+    name: string;
+    title: string;
+    summary: string;
+    hours?: string;
+    licences?: string[];
+    ratings?: string[];
+    linkedin?: string;
+    email: string;
+  };
+}
+const { about } = Astro.props;
+---
+
+<section id="about" class="py-28 px-6">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Section label -->
+    <div class="flex items-center gap-4 mb-16 reveal">
+      <span class="font-['JetBrains_Mono'] text-[10px] tracking-[0.35em] text-[#e8a030] uppercase">01 — About</span>
+      <div class="flex-1 h-px bg-[#1e2535]"></div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- Summary text -->
+      <div class="reveal">
+        <h2 class="font-['Bebas_Neue'] text-[clamp(2rem,5vw,3.5rem)] text-white leading-tight tracking-wide mb-6">
+          Precision, Professionalism,<br/>
+          <span class="text-[#e8a030]">Proven Experience</span>
+        </h2>
+        <p class="font-['Crimson_Pro'] text-lg leading-relaxed text-[#c8cdd8]/80">
+          {about.summary}
+        </p>
+      </div>
+
+      <!-- Stats / credentials panel -->
+      <div class="reveal" style="transition-delay: 0.15s">
+        <div class="border border-[#1e2535] bg-[#10141f] p-8 space-y-6">
+
+          {about.hours && (
+            <div class="pb-6 border-b border-[#1e2535]">
+              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-1">Total Flight Hours</p>
+              <p class="font-['Bebas_Neue'] text-4xl text-[#e8a030] tracking-wider">{about.hours}</p>
+            </div>
+          )}
+
+          {about.licences && about.licences.length > 0 && (
+            <div class="pb-6 border-b border-[#1e2535]">
+              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-3">Licences</p>
+              <div class="flex flex-wrap gap-2">
+                {about.licences.map(l => (
+                  <span class="font-['JetBrains_Mono'] text-xs px-3 py-1 border border-[#1e2535] text-[#c8cdd8]">{l}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {about.ratings && about.ratings.length > 0 && (
+            <div>
+              <p class="font-['JetBrains_Mono'] text-[10px] tracking-widest text-[#5a6278] uppercase mb-3">Type Ratings</p>
+              <div class="flex flex-wrap gap-2">
+                {about.ratings.map(r => (
+                  <span class="font-['JetBrains_Mono'] text-xs px-3 py-1 bg-[#e8a030]/10 border border-[#e8a030]/30 text-[#e8a030]">{r}</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
